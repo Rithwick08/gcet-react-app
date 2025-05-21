@@ -13,7 +13,7 @@ function App() {
         <hr />
       </header>
       <main>
-          <h2>Product List</h2>
+          <h2>Product Lists</h2>
           <hr />
       </main>
       <footer>
