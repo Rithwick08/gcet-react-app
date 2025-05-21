@@ -8,7 +8,17 @@ function App() {
 
   return (
     <>
-      <h1>E-Commerce: By Tarun</h1>
+      <header>
+        <h1>ECommerce: By Tarun</h1>
+        <hr />
+      </header>
+      <main>
+          <h2>Product List</h2>
+          <hr />
+      </main>
+      <footer>
+          <h1>Footer</h1>
+      </footer>
     </>
   )
 }
