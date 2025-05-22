@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <header>
-        <h1>ECommerce: By Tarun Venkat</h1>
+        <h1>ECommerce:  Tarun Venkat</h1>
         <nav>
           <Link to="/" style={{ marginRight:'10px' }}>Home</Link>
           <Link to="/products" style={{ marginRight:'10px' }}>Products</Link>
