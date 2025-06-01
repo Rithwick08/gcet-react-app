@@ -1,28 +1,55 @@
-import React, { useState } from "react";
-import { AppContext } from "../App";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { AppContext } from "../App";
 
 export default function Login() {
-  const { users, user, setUser } = useContext(AppContext);
+  const { setUser } = useContext(AppContext);
+  const [loginData, setLoginData] = useState({
+    email: "",
+    pass: ""
+  });
   const [msg, setMsg] = useState();
+  const [loading, setLoading] = useState(false);
   const Navigate = useNavigate();
-  const API = import.meta.env.VITE_API_URL;
+  
+  // Use environment variable or fallback to localhost
+  const API = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
   const handleSubmit = async () => {
+    if (!loginData.email || !loginData.pass) {
+      setMsg("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+    setMsg("");
+
     try {
-      const url = `${API}/login`;
-      const found = await axios.post(url, user);
-      if (found.data.token) {
-        setMsg("Welcome " + (found.data.name || "User"));
-        setUser(found.data);
+      console.log("Attempting login with:", { email: loginData.email }); // Don't log password
+      
+      const response = await fetch(`${API}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData)
+      });
+
+      const data = await response.json();
+      console.log("Login response:", data);
+
+      if (response.ok && data.user && data.token) {
+        setMsg("Welcome " + data.user.name);
+        setUser(data.user);
         Navigate("/");
       } else {
-        setMsg("Invalid User or Password");
+        setMsg(data.error || "Login failed");
       }
     } catch (error) {
-      setMsg("Login failed. Please try again.");
+      console.error("Login error:", error);
+      setMsg("Network error. Please check if the server is running.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,20 +68,28 @@ export default function Login() {
         )}
         <div className="form-group">
           <input
-            type="text"
+            type="email"
             placeholder="Email address"
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            value={loginData.email}
+            onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+            required
           />
         </div>
         <div className="form-group">
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) => setUser({ ...user, pass: e.target.value })}
+            value={loginData.pass}
+            onChange={(e) => setLoginData({ ...loginData, pass: e.target.value })}
+            required
           />
         </div>
-        <button className="btn btn-primary btn-block" onClick={handleSubmit}>
-          Submit
+        <button 
+          className="btn btn-primary btn-block" 
+          onClick={handleSubmit}
+          disabled={loading || !loginData.email || !loginData.pass}
+        >
+          {loading ? "Logging in..." : "Submit"}
         </button>
         <button className="btn btn-secondary btn-block" onClick={goToRegister}>
           Create Account
