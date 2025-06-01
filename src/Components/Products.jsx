@@ -1,16 +1,12 @@
 import React from 'react'
-
-const Products = () => {
-    return (
+import { useContext } from 'react'
+import { AppContext } from '../App'
+export default function Product() {
+  const {user} = useContext(AppContext)
+  return (
     <div>
-        <h1>Product List</h1>
-        <ul>
-            <li>Prod 1</li>
-            <li>Prod 2</li>
-            <li>Prod 3</li>
-        </ul>
-    </div>
-    )
+      <h3>Welcome {user.name}!</h3>
+      Product List
+      </div>
+  )
 }
-
-export default Products
