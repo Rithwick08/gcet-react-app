@@ -2,21 +2,42 @@ import React, { useState } from "react";
 import { AppContext } from "../App";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Register() {
   const { users, setUsers } = useContext(AppContext);
   const [user, setUser] = useState({});
+  const [msg, setMsg] = useState();
   const Navigate = useNavigate();
-  
-  const handleSubmit = () => {
-    setUsers([...users, user]);
+  const API = import.meta.env.VITE_API_URL;
+
+  const handleSubmit = async () => {
+    try {
+      const url = `${API}/register`;
+      await axios.post(url, user);
+      setMsg("Registration successful! Redirecting to login...");
+      setTimeout(() => {
+        Navigate("/login");
+      }, 1500);
+    } catch (err) {
+      setMsg("Registration failed. Please try again.");
+      console.log(err);
+    }
+  };
+
+  const goToLogin = () => {
     Navigate("/login");
   };
-  
+
   return (
     <main>
       <div className="form-container fade-in">
         <h3>Register</h3>
+        {msg && (
+          <div className={`message ${msg.includes('successful') ? 'success' : 'error'}`}>
+            {msg}
+          </div>
+        )}
         <div className="form-group">
           <input
             type="text"
@@ -41,8 +62,11 @@ export default function Register() {
         <button className="btn btn-primary btn-block" onClick={handleSubmit}>
           Submit
         </button>
-        
-        {users.length > 0 && (
+        <button className="btn btn-secondary btn-block" onClick={goToLogin}>
+          Already have an account? Login
+        </button>
+
+        {users && users.length > 0 && (
           <div className="user-list">
             <h4>Registered Users:</h4>
             <ul style={{listStyle: 'none', padding: 0}}>
