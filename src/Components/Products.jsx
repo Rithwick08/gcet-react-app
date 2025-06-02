@@ -5,9 +5,9 @@ import './Products.css';
 export default function Product() {
   const {user}= useContext(AppContext);
   const [products,setProducts]=useState([]);
-
+  const API=import.meta.env.VITE_API_URL
   useEffect(()=>{
-    fetch('http://localhost:8080/products')
+    fetch(`${API}`/products)
       .then(res=>res.json())
       .then(data=>setProducts(data))
       .catch(er=>console.error(err));
