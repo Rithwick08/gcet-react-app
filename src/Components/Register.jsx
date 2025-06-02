@@ -13,26 +13,19 @@ export default function Register() {
   const [msg, setMsg] = useState();
   const [loading, setLoading] = useState(false);
   const Navigate = useNavigate();
-  
-  // Use environment variable or fallback to localhost
   const API = import.meta.env.VITE_API_URL || "http://localhost:8080";
-
   const handleSubmit = async () => {
-    // Validate input
     if (!user.name || !user.email || !user.pass) {
       setMsg("Please fill in all fields");
       return;
     }
-
     setLoading(true);
     setMsg("");
-
     try {
       console.log("Attempting registration with:", { 
         name: user.name, 
         email: user.email 
-      }); // Don't log password
-      
+      });
       const response = await fetch(`${API}/register`, {
         method: 'POST',
         headers: {
@@ -46,11 +39,8 @@ export default function Register() {
 
       if (response.ok) {
         setMsg("Registration successful! Redirecting to login...");
-        // Update local users array for display
         setUsers(prev => [...prev, user]);
-        // Clear form
         setUser({ name: "", email: "", pass: "" });
-        // Redirect after delay
         setTimeout(() => {
           Navigate("/login");
         }, 1500);

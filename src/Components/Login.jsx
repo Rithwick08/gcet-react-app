@@ -11,8 +11,6 @@ export default function Login() {
   const [msg, setMsg] = useState();
   const [loading, setLoading] = useState(false);
   const Navigate = useNavigate();
-  
-  // Use environment variable or fallback to localhost
   const API = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
   const handleSubmit = async () => {
@@ -25,7 +23,7 @@ export default function Login() {
     setMsg("");
 
     try {
-      console.log("Attempting login with:", { email: loginData.email }); // Don't log password
+      console.log("Attempting login with:", { email: loginData.email }); 
       
       const response = await fetch(`${API}/login`, {
         method: 'POST',

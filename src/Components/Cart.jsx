@@ -6,7 +6,6 @@ export default function Cart() {
       <div className="cart-container fade-in">
         <h2>My Cart</h2>
         <p>Your cart is currently empty</p>
-        {/* Add cart items here */}
       </div>
     </main>
   );
