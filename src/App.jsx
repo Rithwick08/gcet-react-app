@@ -8,6 +8,11 @@ import Login from "./Components/Login";
 import Logout from "./Components/Logout";
 import Products from "./Components/Products";
 import Register from "./Components/Register";
+import Payment from './Components/Payment';
+import Orders from "./Components/Orders";
+
+
+
 export const AppContext = createContext();
 function App() {
   const [users, setUsers] = useState([]);
@@ -24,6 +29,8 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/orders" element={<Orders />} /> 
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -1,0 +1,229 @@
+/* Cart.css - Add this to your existing CSS file or create a new one */
+
+.cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 60vh;
+  }
+  
+  .cart-container h2 {
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .cart-items {
+    margin-bottom: 2rem;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    gap: 1rem;
+  }
+  
+  .item-details h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+  }
+  
+  .item-price {
+    margin: 0;
+    font-weight: bold;
+    color: #2c5530;
+    font-size: 1rem;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .quantity-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .quantity-btn:hover {
+    background: #0056b3;
+  }
+  
+  .quantity {
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    min-width: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .item-total {
+    font-weight: bold;
+    color: #2c5530;
+    font-size: 1.2rem;
+  }
+  
+  .remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .remove-btn:hover {
+    background: #c82333;
+  }
+  
+  .cart-summary {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-top: 2rem;
+  }
+  
+  .total-section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .total-section h3 {
+    color: #2c5530;
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .cart-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .clear-cart-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .clear-cart-btn:hover {
+    background: #5a6268;
+  }
+  
+  .checkout-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .checkout-btn:hover {
+    background: #218838;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .cart-item {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .cart-actions {
+      flex-direction: column;
+    }
+    
+    .quantity-controls {
+      justify-content: center;
+    }
+    
+    .cart-container {
+      padding: 1rem;
+    }
+  }
+  .proceed-payment-btn {
+    background-color: #007bff; /* Blue, matching quantity-btn */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 1.5rem;
+    text-align: center;
+    min-width: 180px;
+  }
+  
+  .proceed-payment-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  /* Shared button style */
+.btn-common {
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 180px;
+  text-align: center;
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+/* Hover effect */
+.btn-common:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+/* Differentiate Clear Cart button color if needed */
+.clear-cart-btn {
+  background-color: #6c757d; /* Grey */
+}
+
+.clear-cart-btn:hover {
+  background-color: #5a6268;
+}
