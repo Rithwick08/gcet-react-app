@@ -7,7 +7,7 @@ export default function Product() {
   const [products,setProducts]=useState([]);
   const API=import.meta.env.VITE_API_URL
   useEffect(()=>{
-    fetch(`${API}products`)
+    fetch(`${API}products/all`)
       .then(res=>res.json())
       .then(data=>setProducts(data))
       .catch(er=>console.error(err));
