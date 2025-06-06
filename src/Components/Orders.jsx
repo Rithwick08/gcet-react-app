@@ -1,9 +1,3 @@
-// orderRouter.get("/:id", async (req,res) => {
-//     const email= req.params.id;
-//     const result = await orderModel.find({email},{})
-//     return res.json(result);
-// });
-
 import React, { useEffect, useState } from 'react';
 import './Orders.css';
 
@@ -11,8 +5,14 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem('user'));
+  } catch (err) {
+    console.error("Invalid user in localStorage");
+  }
+
   const API = import.meta.env.VITE_API_URL;
-  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     if (!user?.email) return;
@@ -32,7 +32,7 @@ export default function Orders() {
     fetchOrders();
   }, [user?.email]);
 
-  if (!user?.email) {
+  if (!user || !user.email) {
     return <div className="orders-page">Please log in to view your orders.</div>;
   }
 
